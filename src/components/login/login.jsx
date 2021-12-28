@@ -8,20 +8,25 @@ import { useNavigate } from 'react-router-dom';
 const Login = ({authService, isLogin, login}) => {
   // const auth = getAuth();
   const navigate = useNavigate()
+  const google = 'google'
+  const github = 'github'
 
-  const processLogin = async(provider) => {
-    await authService.login(provider)
-    login()
-    navigate('/main')
+  const processLogin = (provider) => {
+    authService
+      .login(provider)
+      .then(data => {
+        login()
+        navigate({
+          pathname: '/main',
+          state: {id: data.user.uid}
+        })
+      })
   }
 
-  const loginGoogle = () => {
-    const provider = new GoogleAuthProvider()
-    processLogin(provider)
-  }
-
-  const loginGithub = () => {
-    const provider = new GithubAuthProvider();
+  const snsLogin = event => {
+    const provider = event.currentTarget.className.includes(google )
+      ? new GoogleAuthProvider() 
+      : new GithubAuthProvider()
     processLogin(provider)
   }
 
@@ -30,10 +35,10 @@ const Login = ({authService, isLogin, login}) => {
       <Header isLogin={isLogin}/>
         <section className={styles.login}>
           <h3 className={styles.text}>Login</h3>
-          <button className={`${styles.button} ${styles.google}`} onClick={() => loginGoogle()}>
+          <button className={`${styles.button} ${google}`} onClick={snsLogin}>
             Google
           </button>
-          <button className={`${styles.button} ${styles.github}`} onClick={() => loginGithub()}>
+          <button className={`${styles.button} ${github}`} onClick={snsLogin}>
             Github
           </button>
         </section>
