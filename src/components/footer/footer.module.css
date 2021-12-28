@@ -1,0 +1,14 @@
+@value cardBackground from '../../common/colors.css';
+
+.footer {
+  background-color: cardBackground;
+  position: relative;
+  padding: 1rem;
+}
+
+.text {
+  text-align: center;
+  color: white;
+  margin: 0;
+  font-size: 0.8rem;
+}
