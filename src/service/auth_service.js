@@ -1,19 +1,28 @@
-import { getAuth, signInWithPopup } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
 import { firebaseApp } from './firebase';
 
 class AuthService {
+  auth = getAuth()
+  
   async login(provider) {
-    const auth = getAuth()
     try {
-      const result = await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(this.auth, provider);
       console.log(`로그인 결과 ${result}`)
-      // const credential = provider.credentialFromResult(result);
-      // const token = credential.accessToken;
       const user = result.user;
       return result
     } catch (error) {
       console.log(error.message);
     }
+  }
+
+  onAuthChange(onUserChanged) {
+    onAuthStateChanged(this.auth, (user) => {
+      onUserChanged(user)
+    })
+  }
+
+  logout() {
+    this.auth.signOut()
   }
 }
 

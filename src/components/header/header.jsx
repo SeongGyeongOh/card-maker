@@ -2,14 +2,14 @@ import React from 'react';
 import styles from './header.module.css'
 import logo from '../../images/logo.png'
 
-const Header = ({isLogin, logout}) => {
+const Header = ({onLogout}) => {
   
   return (
     <header className={styles.header}>
       <img className={styles.img} src={logo} alt='logo'/>
       {
-        isLogin && 
-        <button className={styles.button} onClick={() => logout()}>
+        onLogout &&
+        <button className={styles.button} onClick={() => onLogout()}>
           로그아웃
         </button>
       }

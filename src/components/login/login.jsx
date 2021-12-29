@@ -2,8 +2,9 @@ import React from 'react';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import styles from './login.module.css'
-import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Login = ({authService, isLogin, login}) => {
   // const auth = getAuth();
@@ -11,15 +12,19 @@ const Login = ({authService, isLogin, login}) => {
   const google = 'google'
   const github = 'github'
 
+  const goToMain = (user) => {
+    navigate({
+      pathname: '/main',
+      state: {id: user.uid}
+    })
+  }
+
   const processLogin = (provider) => {
     authService
       .login(provider)
       .then(data => {
         login()
-        navigate({
-          pathname: '/main',
-          state: {id: data.user.uid}
-        })
+        goToMain(data.user)
       })
   }
 
@@ -29,6 +34,12 @@ const Login = ({authService, isLogin, login}) => {
       : new GithubAuthProvider()
     processLogin(provider)
   }
+
+  useEffect(() => {
+    authService.onAuthChange(user => {
+      user && goToMain(user.uid)
+    })
+  })
 
   return (
     <section className={styles.container}>
