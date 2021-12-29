@@ -1,0 +1,38 @@
+.container {
+  display: flex; 
+  align-items: center;
+  padding: 2rem;
+  margin: 1rem;
+  background-color: black;
+  border-radius: 1rem;
+}
+
+.img {
+  width: 25%;
+  border-radius: 50%;
+}
+
+.profile {
+  color: white;
+  padding-left: 2rem;
+  width: 75%;
+}
+
+.name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding-bottom: 0.1rem;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: white;
+  padding: 1rem px;
+}
+
+p {
+  font-size: 0.8rem;
+  padding: 0.2rem 0px;
+}
+
