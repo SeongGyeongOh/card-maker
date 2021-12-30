@@ -31,10 +31,6 @@ textarea {
   border-bottom: 1px solid black;
 }
 
-input::placeholder {
-  color: grey;
-}
-
 .btn {
   display: flex;
   width: 100%;

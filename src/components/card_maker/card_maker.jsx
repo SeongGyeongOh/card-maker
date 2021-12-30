@@ -8,10 +8,10 @@ const CardMaker = memo(({users, makeCard}) => {
     <section className={styles.container}>
       <h1 className={styles.title}>Card Maker</h1>
       {
-        console.log(users)
-        // users.map(user => {
-        //   return <Form user={user} key={user.id}/>
-        // })
+        // console.log(users)
+        users.map(user => {
+          return <Form user={user} key={user.id}/>
+        })
       }
       <AddForm makeCard={makeCard}/>
     </section>

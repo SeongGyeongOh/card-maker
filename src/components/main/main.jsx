@@ -7,12 +7,11 @@ import CardPreview from '../card_preview/card_preview';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import styles from './main.module.css'
-import img from "../../images/default_logo.png" 
 
 const dummyUsers = [
-  {id: 1, name: 'AAA', profile: null, company: 'AAA.corporation', position: 'Engineer', email: 'aaa@aaa.com', comment: 'know that the pain will pass', color: ['dark', 'blue', 'purple']},
-  {id: 2, name: 'BBB', profile: null, company: 'BBB.corporation', position: 'Engineer', email: 'bbb@bbb.com', comment: 'and when it does', color: ['dark', 'blue', 'purple']},
-  {id: 3, name: 'CCC', profile: null, company: 'CCC.corporation', position: 'Engineer', email: 'ccc@cc.com', comment: "you'll be stronger, happier and more sensative and aware", color: ['dark', 'blue', 'purple']},
+  {id: 1, name: 'AAA', profile: null, company: 'AAA.corporation', position: 'Engineer', email: 'aaa@aaa.com', comment: 'know that the pain will pass', color: 'dark'},
+  {id: 2, name: 'BBB', profile: null, company: 'BBB.corporation', position: 'Engineer', email: 'bbb@bbb.com', comment: 'and when it does', color: 'blue'},
+  {id: 3, name: 'CCC', profile: null, company: 'CCC.corporation', position: 'Engineer', email: 'ccc@cc.com', comment: "you'll be stronger, happier and more sensative and aware", color: 'purple'},
 ]
 
 const Main = ({isLogin, authService}) => {
@@ -25,10 +24,9 @@ const Main = ({isLogin, authService}) => {
     authService.logout()
   }
 
-  const makeCard = () => {
-    // const newUsers = [...users, user]
-    // setUsers(newUsers)
-    console.log("asdf")
+  const makeCard = (card) => {
+    const newUsers = [...users, card]
+    setUsers(newUsers)
   }
 
   useEffect(() => {
