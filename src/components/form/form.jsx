@@ -1,10 +1,11 @@
 import React from 'react';
 import { useRef } from 'react';
+import ImageButton from '../image_button/image_button';
 import styles from './form.module.css'
 
-const Form = ({user, createOrEdit, deleteCard}) => {
+const Form = ({user, createOrEdit, deleteCard, FileInput}) => {
   const {
-    name, company, position, email, comment, color
+    name, company, position, email, comment, color, fileName
   } = user
 
   const nameRef = useRef() 
@@ -22,6 +23,14 @@ const Form = ({user, createOrEdit, deleteCard}) => {
     createOrEdit({
       ...user,
       [event.currentTarget.name]: event.currentTarget.value
+    })
+  }
+
+  const onFileChange = file => {
+    createOrEdit({
+       ...user,
+       fileName: file.name,
+       profile: file.url
     })
   }
 
@@ -80,7 +89,7 @@ const Form = ({user, createOrEdit, deleteCard}) => {
         value={comment}
         onChange={onChange}/>
       <div className={styles.btn}>
-        <button className={styles.btnImage} onClick={() => {}}>Image</button>
+        <FileInput onFileChange={onFileChange} fileName={fileName}/>
         <button className={styles.btnDelete} onClick={onDelete}>Delete</button>
       </div>
     </form>

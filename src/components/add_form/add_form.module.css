@@ -37,23 +37,15 @@ textarea {
   border-right: 1px solid black;
 }
 
-.btnImage {
-  background-color: pink;
-  border-style: none;
-  padding: 0.5rem 0px;
-  flex: 1;
-  cursor: pointer;
-}
-
 .btnAdd {
   background-color: makerGreen;
   color: white;
   border-style: none;
   padding: 0.5rem 0px;
-  flex: 1;
+  width: 100%;
   cursor: pointer;
 }
 
-.btnImage:hover, .btnDelete:hover {
+.btnAdd:hover {
   opacity: 0.9;
 }

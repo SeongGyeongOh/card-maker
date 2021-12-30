@@ -1,8 +1,9 @@
 import React from 'react';
+import { useState } from 'react';
 import { useRef } from 'react';
 import styles from './add_form.module.css'
 
-const AddForm = ({makeCard}) => {
+const AddForm = ({makeCard, FileInput}) => {
   const inputName = useRef() 
   const inputCompany = useRef() 
   const inputPosition = useRef() 
@@ -10,6 +11,7 @@ const AddForm = ({makeCard}) => {
   const inputComment = useRef() 
   const inputColor = useRef()
   const formRef = useRef()
+  const [file, setFile] = useState({fileName: null, profile: null})
 
   const addCard = event => {
     event.preventDefault()
@@ -21,10 +23,18 @@ const AddForm = ({makeCard}) => {
       email: inputEmail.current.value || '',
       comment: inputComment.current.value || '',
       color: inputColor.current.value || '',
-      profile: ''
+      profile: file.profile || null,
+      fileName: file.fileName || ''
     }
     formRef.current.reset()
     makeCard(card)
+  }
+
+  const onFileChange = file => {
+    setFile({
+      fileName: file.name,
+      profile: file.url
+    })
   }
 
   return (
@@ -66,7 +76,7 @@ const AddForm = ({makeCard}) => {
         type="text" 
         placeholder='leave your comment'/>
       <div className={styles.btn}>
-        <button className={styles.btnImage}>Image</button>
+        <FileInput onFileChange={onFileChange} fileName={file.fileName}/>
         <button className={styles.btnAdd} onClick={addCard}>Add</button>
       </div>
     </form>

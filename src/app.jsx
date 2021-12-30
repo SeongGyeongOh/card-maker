@@ -4,7 +4,7 @@ import Main from './components/main/main';
 import Login from './components/login/login';
 import { useState } from 'react';
 
-function App({authService}) {  
+function App({authService, FileInput}) {  
   return (
     <div className={styles.app}>
       <BrowserRouter>
@@ -18,7 +18,9 @@ function App({authService}) {
           />
           <Route path="/main" element={
             <Main 
-              authService={authService}/>}
+              authService={authService}
+              FileInput={FileInput}
+            />}
             />  
         </Routes>
       </BrowserRouter>

@@ -9,12 +9,12 @@ import Header from '../header/header';
 import styles from './main.module.css'
 
 const dummyUsers = {
-  '1': {id: 1, name: 'AAA', profile: null, company: 'AAA.corporation', position: 'Engineer', email: 'aaa@aaa.com', comment: 'know that the pain will pass', color: 'dark'},
-  '2': {id: 2, name: 'BBB', profile: null, company: 'BBB.corporation', position: 'Engineer', email: 'bbb@bbb.com', comment: 'and when it does', color: 'blue'},
-  '3': {id: 3, name: 'CCC', profile: null, company: 'CCC.corporation', position: 'Engineer', email: 'ccc@cc.com', comment: "you'll be stronger, happier and more sensative and aware", color: 'purple'},
+  '1': {id: 1, name: 'AAA', profile: null, fileName: null, company: 'AAA.corporation', position: 'Engineer', email: 'aaa@aaa.com', comment: 'know that the pain will pass', color: 'dark'},
+  '2': {id: 2, name: 'BBB', profile: null, fileName: null, company: 'BBB.corporation', position: 'Engineer', email: 'bbb@bbb.com', comment: 'and when it does', color: 'blue'},
+  '3': {id: 3, name: 'CCC', profile: null, fileName: null, company: 'CCC.corporation', position: 'Engineer', email: 'ccc@cc.com', comment: "you'll be stronger, happier and more sensative and aware", color: 'purple'},
 }
 
-const Main = ({isLogin, authService}) => {
+const Main = ({isLogin, authService, FileInput}) => {
 
   const [users, setUsers] = useState(dummyUsers)
 
@@ -60,7 +60,7 @@ const Main = ({isLogin, authService}) => {
         navigate('/')
       }
     })
-  })
+  }, [users])
 
   return (
     <main className={styles.container}>
@@ -69,6 +69,7 @@ const Main = ({isLogin, authService}) => {
         <CardMaker users={users} 
           createOrEdit={createOrEditCard}
           deleteCard={deleteCard}
+          FileInput={FileInput}
         />  
         <CardPreview users={users}/>
       </div>

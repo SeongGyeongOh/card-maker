@@ -1,0 +1,20 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.input {
+  display: none;
+}
+
+.btn {
+  width: 100%;
+  background-color: rgb(250, 223, 227);
+  border: none;
+  cursor: pointer; 
+}
+
+.btn:hover {
+  opacity: 0.8;
+}

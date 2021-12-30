@@ -6,13 +6,11 @@ const Card = ({user}) => {
   const {
     name, profile, company, position, email, comment, color
   } = user
-
   const url = profile || DEFAULT_IMAGE
-
   return (
     <div className={`${styles.container} ${getStyles(color)}`}>
       <img className={styles.img} 
-        src={require('../../images/default_logo.png')} 
+        src={url}
         alt="logo"
       />
       <div className={styles.profile}>
