@@ -2,8 +2,10 @@ import styles from './image_button.module.css'
 
 import React from 'react';
 import { useRef } from 'react';
+import { useState } from 'react';
 
 const ImageButton = ({imageUploader, fileName, onFileChange}) => {  
+  const [loading, setLoading] = useState(false)
   const inputRef = useRef()
 
   const onButtonClick = event => {
@@ -12,9 +14,9 @@ const ImageButton = ({imageUploader, fileName, onFileChange}) => {
   }
 
   const onChange = async event => {
-    console.log(event.target.files[0])
-    const uploadedFile = await imageUploader
-      .upload(event.target.files[0])
+    setLoading(true)
+    const uploadedFile = await imageUploader.upload(event.target.files[0])
+    setLoading(false)
       
       console.log(uploadedFile)
       
@@ -34,9 +36,14 @@ const ImageButton = ({imageUploader, fileName, onFileChange}) => {
         ref={inputRef}
         onChange={onChange}
       />
-      <button className={styles.btn} onClick={onButtonClick}>
+      {!loading && (
+        <button className={`${styles.btn} ${fileName ? styles.pink : styles.grey}`} onClick={onButtonClick}>
         { fileName || "No File" }
-      </button>
+        </button>
+      )}
+      {
+        loading && <div className={styles.loading}></div>
+      }
     </div>
   )
 }

@@ -27,6 +27,7 @@ const AddForm = ({makeCard, FileInput}) => {
       fileName: file.fileName || ''
     }
     formRef.current.reset()
+    setFile({fileName: null, profile: null})
     makeCard(card)
   }
 
@@ -45,7 +46,6 @@ const AddForm = ({makeCard, FileInput}) => {
         type="text" 
         name="name" 
         placeholder='name'
-          
       />
       <input 
         ref={inputCompany}
