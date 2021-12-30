@@ -3,17 +3,21 @@ import AddForm from '../add_form/add_form';
 import Form from '../form/form';
 import styles from './card_maker.module.css'
 
-const CardMaker = memo(({users, makeCard}) => {
+const CardMaker = memo(({users, createOrEdit, deleteCard}) => {
   return(
     <section className={styles.container}>
       <h1 className={styles.title}>Card Maker</h1>
       {
         // console.log(users)
-        users.map(user => {
-          return <Form user={user} key={user.id}/>
-        })
+        Object.keys(users).map(key => (
+          <Form 
+            key={key} 
+            user={users[key]} 
+            createOrEdit={createOrEdit} 
+            deleteCard={deleteCard}/>
+        ))
       }
-      <AddForm makeCard={makeCard}/>
+      <AddForm makeCard={createOrEdit}/>
     </section>
   )
 })

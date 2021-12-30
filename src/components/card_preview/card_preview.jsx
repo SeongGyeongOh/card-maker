@@ -7,9 +7,12 @@ const CardPreview = memo(({users}) => {
     <section className={styles.container}>
       <h1 className={styles.title}>Card Preview</h1>
       {
-        users && users.map(user => {
-          return <Card user={user} key={user.id}/>
-        })
+        users && Object.keys(users).map(key => (
+          <Card  
+            key={key} 
+            user={users[key]}
+          />
+        ))
       }
     </section>
   )
