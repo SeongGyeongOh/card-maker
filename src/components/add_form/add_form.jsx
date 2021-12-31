@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useState } from 'react';
 import { useRef } from 'react';
 import styles from './add_form.module.css'
 
-const AddForm = ({makeCard, FileInput}) => {
+const AddForm = memo(({makeCard, FileInput}) => {
   const inputName = useRef() 
   const inputCompany = useRef() 
   const inputPosition = useRef() 
@@ -13,6 +13,7 @@ const AddForm = ({makeCard, FileInput}) => {
   const formRef = useRef()
   const [file, setFile] = useState({fileName: null, profile: null})
 
+  console.log("add form rerdered")
   const addCard = event => {
     event.preventDefault()
     const card = {
@@ -23,7 +24,7 @@ const AddForm = ({makeCard, FileInput}) => {
       email: inputEmail.current.value || '',
       comment: inputComment.current.value || '',
       color: inputColor.current.value || '',
-      profile: file.profile || null,
+      profile: file.profile || '',
       fileName: file.fileName || ''
     }
     formRef.current.reset()
@@ -81,6 +82,6 @@ const AddForm = ({makeCard, FileInput}) => {
       </div>
     </form>
   )
-}
+})
 
 export default AddForm;

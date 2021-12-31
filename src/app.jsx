@@ -4,7 +4,7 @@ import Main from './components/main/main';
 import Login from './components/login/login';
 import { useState } from 'react';
 
-function App({authService, FileInput}) {  
+function App({authService, FileInput, cardRepository}) {  
   return (
     <div className={styles.app}>
       <BrowserRouter>
@@ -20,6 +20,7 @@ function App({authService, FileInput}) {
             <Main 
               authService={authService}
               FileInput={FileInput}
+              cardRepository={cardRepository}
             />}
             />  
         </Routes>

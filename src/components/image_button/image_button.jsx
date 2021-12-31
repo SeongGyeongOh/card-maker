@@ -3,8 +3,9 @@ import styles from './image_button.module.css'
 import React from 'react';
 import { useRef } from 'react';
 import { useState } from 'react';
+import { memo } from 'react';
 
-const ImageButton = ({imageUploader, fileName, onFileChange}) => {  
+const ImageButton = memo(({imageUploader, fileName, onFileChange}) => {  
   const [loading, setLoading] = useState(false)
   const inputRef = useRef()
 
@@ -46,6 +47,6 @@ const ImageButton = ({imageUploader, fileName, onFileChange}) => {
       }
     </div>
   )
-}
+})
 
 export default ImageButton;

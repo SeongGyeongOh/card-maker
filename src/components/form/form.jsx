@@ -1,9 +1,9 @@
 import React from 'react';
+import { memo } from 'react';
 import { useRef } from 'react';
-import ImageButton from '../image_button/image_button';
 import styles from './form.module.css'
 
-const Form = ({user, createOrEdit, deleteCard, FileInput}) => {
+const Form = memo(({user, createOrEdit, deleteCard, FileInput}) => {
   const {
     name, company, position, email, comment, color, fileName
   } = user
@@ -84,6 +84,7 @@ const Form = ({user, createOrEdit, deleteCard, FileInput}) => {
         onChange={onChange}/>
       <textarea 
         className={styles.comment} 
+        name='comment'
         type="text" 
         ref={commentRef}
         value={comment}
@@ -94,6 +95,6 @@ const Form = ({user, createOrEdit, deleteCard, FileInput}) => {
       </div>
     </form>
   )
-}
+})
 
 export default Form;

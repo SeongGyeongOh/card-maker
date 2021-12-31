@@ -1,8 +1,10 @@
 import React from 'react';
+import { memo } from 'react';
 import styles from './card.module.css'
 
 const DEFAULT_IMAGE = '../../images/default_logo.png'
-const Card = ({user}) => {
+const Card = memo(({user}) => {
+  console.log("card render")
   const {
     name, profile, company, position, email, comment, color
   } = user
@@ -24,16 +26,16 @@ const Card = ({user}) => {
       </div>
     </div>
   )
+})
 
-  function getStyles(color) {
-    switch(color) {
-      case 'dark':
-      return styles.dark
-      case 'blue':
-      return styles.blue
-      case 'purple': 
-      return styles.purple
-    }
+function getStyles(color) {
+  switch(color) {
+    case 'dark':
+    return styles.dark
+    case 'blue':
+    return styles.blue
+    case 'purple': 
+    return styles.purple
   }
 }
 

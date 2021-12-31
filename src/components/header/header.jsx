@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from './header.module.css'
 import logo from '../../images/logo.png'
 
-const Header = ({onLogout}) => {
-  
+const Header = memo(({onLogout}) => {
+  console.log("header re-render")
   return (
     <header className={styles.header}>
       <img className={styles.img} src={logo} alt='logo'/>
@@ -16,6 +16,6 @@ const Header = ({onLogout}) => {
       <h3 className={styles.cardName}>Business Card Maker</h3>
     </header>    
   )
-}
+})
 
 export default Header;

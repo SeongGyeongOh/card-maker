@@ -1,5 +1,5 @@
 import { getAuth, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
-import { firebaseApp } from './firebase';
+import { firebaseAuth } from './firebase';
 
 class AuthService {
   auth = getAuth()
@@ -7,7 +7,7 @@ class AuthService {
   async login(provider) {
     try {
       const result = await signInWithPopup(this.auth, provider);
-      console.log(`로그인 결과 ${result}`)
+      console.log(`로그인 결과 ${result.user}`)
       const user = result.user;
       return result
     } catch (error) {

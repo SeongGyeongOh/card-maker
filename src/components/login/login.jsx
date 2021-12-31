@@ -6,7 +6,7 @@ import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-const Login = ({authService, isLogin, login}) => {
+const Login = ({authService, isLogin}) => {
   // const auth = getAuth();
   const navigate = useNavigate()
   const google = 'google'
@@ -23,7 +23,6 @@ const Login = ({authService, isLogin, login}) => {
     authService
       .login(provider)
       .then(data => {
-        login()
         goToMain(data.user)
       })
   }
